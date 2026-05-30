@@ -1,0 +1,52 @@
+{
+  "name": "twenty-mcp-server",
+  "version": "0.1.0",
+  "description": "Standard MCP server for Twenty CRM — control all of Twenty from any MCP client",
+  "license": "AGPL-3.0",
+  "private": true,
+  "type": "module",
+  "bin": "dist/cli.mjs",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "deploy",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npx rimraf dist && npx vite build"
+  },
+  "keywords": [
+    "twenty",
+    "mcp",
+    "crm",
+    "model-context-protocol"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "dotenv": "^16.4.5",
+    "twenty-shared": "workspace:*",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260116.1",
+    "@vitest/coverage-v8": "^4.0.18",
+    "rimraf": "^5.0.0",
+    "tsc-alias": "^1.8.16",
+    "vite": "^7.0.0",
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": "^24.5.0",
+    "npm": "please-use-yarn",
+    "yarn": "^4.0.2"
+  }
+}

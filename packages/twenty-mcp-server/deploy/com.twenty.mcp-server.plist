@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  launchd agent to keep twenty-mcp-server running on a Mac mini.
+
+  Install:
+    cp deploy/com.twenty.mcp-server.plist ~/Library/LaunchAgents/
+    # edit the paths and env below to match your machine
+    launchctl load -w ~/Library/LaunchAgents/com.twenty.mcp-server.plist
+
+  Logs: /tmp/twenty-mcp-server.out.log and .err.log
+  Stop: launchctl unload ~/Library/LaunchAgents/com.twenty.mcp-server.plist
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.twenty.mcp-server</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/node</string>
+        <string>/Users/you/twenty/packages/twenty-mcp-server/dist/cli.mjs</string>
+        <string>--http</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>TWENTY_BASE_URL</key>
+        <string>http://localhost:3000</string>
+        <key>TWENTY_MCP_HTTP_PORT</key>
+        <string>3010</string>
+        <key>TWENTY_MCP_ALLOWED_ORIGINS</key>
+        <string></string>
+        <key>TWENTY_MCP_ENABLE_RAW_GRAPHQL</key>
+        <string>false</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/twenty-mcp-server.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/twenty-mcp-server.err.log</string>
+</dict>
+</plist>
